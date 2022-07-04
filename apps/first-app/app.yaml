@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: first-app
+  name: first-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: first-app
+  template:
+    metadata:
+      labels:
+        app: first-app
+    spec:
+      containers:
+      - image: sselzer/first-app:8c67fd9
+        name: app
+        ports:
+        - containerPort: 8080
