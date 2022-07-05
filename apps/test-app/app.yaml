@@ -26,7 +26,7 @@ spec:
         app: test-app
     spec:
       containers:
-      - image: sselzer/test-app:3a4054b
+      - image: sselzer/test-app:203742a
         name: app
         ports:
         - containerPort: 8080
