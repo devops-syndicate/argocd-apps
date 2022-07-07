@@ -26,7 +26,7 @@ spec:
         app: first-app
     spec:
       containers:
-      - image: sselzer/first-app:dea96fa
+      - image: sselzer/first-app:0f2ab25
         name: app
         ports:
         - containerPort: 8080
