@@ -8,9 +8,6 @@ spec:
     properties:
       image: sselzer/first-app:204c2a4
       port: 8080
-      annotations:
-        argocd.argoproj.io/compare-options: IgnoreExtraneous
-        argocd.argoproj.io/sync-options: Prune=false
     traits:
     - type: argocd-aware
     - properties:
