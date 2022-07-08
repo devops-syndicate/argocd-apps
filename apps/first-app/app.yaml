@@ -12,6 +12,7 @@ spec:
         argocd.argoproj.io/compare-options: IgnoreExtraneous
         argocd.argoproj.io/sync-options: Prune=false
     traits:
+    - type: argocd-aware
     - properties:
         domain: first-app.127.0.0.1.nip.io
         http:
