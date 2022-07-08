@@ -9,7 +9,6 @@ spec:
       image: sselzer/first-app:204c2a4
       port: 8080
     traits:
-    - type: argocd
     - properties:
         domain: first-app.127.0.0.1.nip.io
         http:
@@ -20,4 +19,5 @@ spec:
         max: 5
         min: 2
       type: cpuscaler
+    - type: argocd
     type: webservice
