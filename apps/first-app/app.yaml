@@ -19,4 +19,7 @@ spec:
         max: 5
         min: 2
       type: cpuscaler
+    - type: annotations
+      properties:
+        argocd.argoproj.io/compare-options: IgnoreExtraneous
     type: webservice
