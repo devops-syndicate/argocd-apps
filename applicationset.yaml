@@ -21,18 +21,12 @@ spec:
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{path.basename}}'
-      ignoreDifferences:
-      - group: apps
-        kind: Deployment
-      - group: core
-        kind: Service
       syncPolicy:
         automated:
           prune: true 
           selfHeal: false 
           allowEmpty: false
         syncOptions:
-        - RespectIgnoreDifferences=true
         - CreateNamespace=true
         - PrunePropagationPolicy=foreground
         - PruneLast=true
