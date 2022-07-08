@@ -21,4 +21,5 @@ spec:
       type: cpuscaler
     type: webservice
   policies:
-  - type: argocd
+  - name: argocd
+    type: argocd
