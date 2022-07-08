@@ -6,7 +6,7 @@ spec:
   components:
   - name: first-app
     properties:
-      image: sselzer/first-app:204c2a4
+      image: sselzer/first-app:c0cb5b9
       port: 8080
     traits:
     - properties:
