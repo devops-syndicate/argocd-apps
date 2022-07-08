@@ -20,5 +20,5 @@ spec:
         min: 2
       type: cpuscaler
     type: webservice
-    policies:
-    - type: argocd
+  policies:
+  - type: argocd
