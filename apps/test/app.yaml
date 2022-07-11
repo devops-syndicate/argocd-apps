@@ -27,7 +27,7 @@ spec:
           secretKeyRef:
             key: port
             name: test-db
-      image: sselzer/test:379623d
+      image: sselzer/test:d9ebb42
       port: 8080
     traits:
     - properties:
