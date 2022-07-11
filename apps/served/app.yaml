@@ -1,0 +1,44 @@
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: served
+spec:
+  components:
+  - name: served
+    properties:
+      env:
+      - name: username
+        valueFrom:
+          secretKeyRef:
+            key: username
+            name: served-db
+      - name: password
+        valueFrom:
+          secretKeyRef:
+            key: password
+            name: served-db
+      - name: endpoint
+        valueFrom:
+          secretKeyRef:
+            key: endpoint
+            name: served-db
+      - name: port
+        valueFrom:
+          secretKeyRef:
+            key: port
+            name: served-db
+      image: sselzer/served:b41f1f7
+      port: 8080
+    traits:
+    - properties:
+        domain: served.127.0.0.1.nip.io
+        http:
+          /: 8080
+      type: gateway
+    - properties:
+        cpuPercent: 80
+        max: 5
+        min: 2
+      type: cpuscaler
+    - type: argocd
+    type: webservice
