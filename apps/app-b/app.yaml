@@ -6,7 +6,7 @@ spec:
   components:
   - name: app-b
     properties:
-      image: sselzer/app-b:bdfbae5
+      image: sselzer/app-b:53a5f3f
       port: 8080
     traits:
     - properties:
