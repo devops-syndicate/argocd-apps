@@ -6,9 +6,14 @@ spec:
   components:
   - name: test-app
     properties:
-      image: sselzer/test-app:29cc798
+      image: sselzer/test-app:ee7e88e
       port: 8080
     traits:
+    - properties:
+        prometheus.io/path: /metrics
+        prometheus.io/port: "8080"
+        prometheus.io/scrape: "true"
+      type: annotations
     - properties:
         domain: test-app.127.0.0.1.nip.io
         http:
