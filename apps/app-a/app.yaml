@@ -1,0 +1,27 @@
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: app-a
+spec:
+  components:
+  - name: app-a
+    properties:
+      image: sselzer/app-a:ec273cb
+      port: 8080
+    traits:
+    - properties:
+        prometheus.io/path: /metrics
+        prometheus.io/port: "8080"
+        prometheus.io/scrape: "true"
+      type: annotations
+    - properties:
+        domain: app-a.127.0.0.1.nip.io
+        http:
+          /: 8080
+      type: gateway
+    - properties:
+        cpuPercent: 80
+        max: 5
+        min: 2
+      type: cpuscaler
+    type: webservice
