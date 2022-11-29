@@ -1,3 +1,11 @@
+apiVersion: v1
+data:
+  OTEL_SERVICE_NAME: app-acd
+  OTEL_TRACE_ENDPOINT: http://loki.loki:4318/v1/traces
+kind: ConfigMap
+metadata:
+  name: app-a-9ch96gk7b2
+---
 apiVersion: core.oam.dev/v1beta1
 kind: Application
 metadata:
@@ -6,7 +14,18 @@ spec:
   components:
   - name: app-a
     properties:
-      image: sselzer/app-a:af37b48
+      env:
+      - name: OTEL_SERVICE_NAME
+        valueFrom:
+          configMapKeyRef:
+            key: OTEL_SERVICE_NAME
+            name: app-a-9ch96gk7b2
+      - name: OTEL_TRACE_ENDPOINT
+        valueFrom:
+          configMapKeyRef:
+            key: OTEL_TRACE_ENDPOINT
+            name: app-a-9ch96gk7b2
+      image: sselzer/app-a:23e93c4
       port: 8080
     traits:
     - properties:
