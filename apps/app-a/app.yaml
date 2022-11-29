@@ -1,10 +1,10 @@
 apiVersion: v1
 data:
-  OTEL_EXPORTER_OTLP_ENDPOINT: http://tempo.tempo:4318
+  OTEL_EXPORTER_JAEGER_HTTP_ENDPOINT: http://tempo.tempo:14268/api/traces
   OTEL_SERVICE_NAME: app-a
 kind: ConfigMap
 metadata:
-  name: app-a-t7bg4t98c8
+  name: app-a-4mkbbg8h57
 ---
 apiVersion: core.oam.dev/v1beta1
 kind: Application
@@ -19,13 +19,13 @@ spec:
         valueFrom:
           configMapKeyRef:
             key: OTEL_SERVICE_NAME
-            name: app-a-t7bg4t98c8
+            name: app-a-4mkbbg8h57
       - name: OTEL_EXPORTER_OTLP_ENDPOINT
         valueFrom:
           configMapKeyRef:
             key: OTEL_EXPORTER_OTLP_ENDPOINT
-            name: app-a-t7bg4t98c8
-      image: sselzer/app-a:1a55e58
+            name: app-a-4mkbbg8h57
+      image: sselzer/app-a:8db97d7
       port: 8080
     traits:
     - properties:
