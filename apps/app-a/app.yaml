@@ -20,12 +20,12 @@ spec:
           configMapKeyRef:
             key: OTEL_SERVICE_NAME
             name: app-a-4mkbbg8h57
-      - name: OTEL_EXPORTER_OTLP_ENDPOINT
+      - name: OTEL_EXPORTER_JAEGER_HTTP_ENDPOINT
         valueFrom:
           configMapKeyRef:
-            key: OTEL_EXPORTER_OTLP_ENDPOINT
+            key: OTEL_EXPORTER_JAEGER_HTTP_ENDPOINT
             name: app-a-4mkbbg8h57
-      image: sselzer/app-a:8db97d7
+      image: sselzer/app-a:29b6d11
       port: 8080
     traits:
     - properties:
