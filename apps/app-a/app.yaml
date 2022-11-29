@@ -25,7 +25,7 @@ spec:
           configMapKeyRef:
             key: OTEL_EXPORTER_OTLP_ENDPOINT
             name: app-a-26mgc56t52
-      image: sselzer/app-a:c9b5a64
+      image: sselzer/app-a:5e530c1
       port: 8080
     traits:
     - properties:
