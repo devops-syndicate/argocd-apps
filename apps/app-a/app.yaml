@@ -20,12 +20,12 @@ spec:
           configMapKeyRef:
             key: OTEL_SERVICE_NAME
             name: app-a-26mgc56t52
-      - name: OTEL_TRACE_ENDPOINT
+      - name: OTEL_EXPORTER_OTLP_ENDPOINT
         valueFrom:
           configMapKeyRef:
-            key: OTEL_TRACE_ENDPOINT
+            key: OTEL_EXPORTER_OTLP_ENDPOINT
             name: app-a-26mgc56t52
-      image: sselzer/app-a:c11a1e9
+      image: sselzer/app-a:c9b5a64
       port: 8080
     traits:
     - properties:
