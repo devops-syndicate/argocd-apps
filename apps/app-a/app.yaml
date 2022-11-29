@@ -1,10 +1,10 @@
 apiVersion: v1
 data:
-  OTEL_EXPORTER_OTLP_ENDPOINT: http://loki.loki:4318
+  OTEL_EXPORTER_OTLP_ENDPOINT: http://tempo.tempo:4318
   OTEL_SERVICE_NAME: app-a
 kind: ConfigMap
 metadata:
-  name: app-a-26mgc56t52
+  name: app-a-t7bg4t98c8
 ---
 apiVersion: core.oam.dev/v1beta1
 kind: Application
@@ -19,13 +19,13 @@ spec:
         valueFrom:
           configMapKeyRef:
             key: OTEL_SERVICE_NAME
-            name: app-a-26mgc56t52
+            name: app-a-t7bg4t98c8
       - name: OTEL_EXPORTER_OTLP_ENDPOINT
         valueFrom:
           configMapKeyRef:
             key: OTEL_EXPORTER_OTLP_ENDPOINT
-            name: app-a-26mgc56t52
-      image: sselzer/app-a:5e530c1
+            name: app-a-t7bg4t98c8
+      image: sselzer/app-a:1a55e58
       port: 8080
     traits:
     - properties:
