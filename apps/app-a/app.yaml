@@ -25,7 +25,7 @@ spec:
           configMapKeyRef:
             key: OTEL_EXPORTER_JAEGER_HTTP_ENDPOINT
             name: app-a-4mkbbg8h57
-      image: sselzer/app-a:29b6d11
+      image: sselzer/app-a:2c3033c
       port: 8080
     traits:
     - properties:
