@@ -26,7 +26,12 @@ spec:
           configMapKeyRef:
             key: OTEL_EXPORTER_JAEGER_HTTP_ENDPOINT
             name: app-a-9f69b5fthc
-      image: sselzer/app-a:f71a4a8
+      - name: PYROSCOPE_URL
+        valueFrom:
+          configMapKeyRef:
+            key: PYROSCOPE_URL
+            name: app-a-9f69b5fthc
+      image: sselzer/app-a:b312d9f
       port: 8080
     traits:
     - properties:
