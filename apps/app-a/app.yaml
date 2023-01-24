@@ -31,12 +31,10 @@ spec:
           configMapKeyRef:
             key: PYROSCOPE_URL
             name: app-a-9f69b5fthc
-      image: sselzer/app-a:e6dc925
+      image: sselzer/app-a:7aacac6
       port: 8080
     traits:
     - properties:
-        phlare.grafana.com/port: "8080"
-        phlare.grafana.com/scrape: "true"
         prometheus.io/path: /metrics
         prometheus.io/port: "8080"
         prometheus.io/scrape: "true"
