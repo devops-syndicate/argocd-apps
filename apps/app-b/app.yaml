@@ -31,7 +31,7 @@ spec:
           configMapKeyRef:
             key: PYROSCOPE_URL
             name: app-b-kgfhfm7h56
-      image: sselzer/app-b:47afba5
+      image: sselzer/app-b:0c22586
       port: 8080
     traits:
     - properties:
