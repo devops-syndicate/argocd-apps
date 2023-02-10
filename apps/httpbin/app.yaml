@@ -19,6 +19,6 @@ spec:
         classInSpec: true
         domain: httpbin.127.0.0.1.nip.io
         http:
-          /: 8080
+          /: 80
       type: gateway
     type: webservice
