@@ -31,7 +31,7 @@ spec:
           configMapKeyRef:
             key: PYROSCOPE_URL
             name: app-b-kgfhfm7h56
-      image: sselzer/app-b:e21d8a7
+      image: sselzer/app-b:feb01c8
       port: 8080
     traits:
     - properties:
@@ -40,8 +40,6 @@ spec:
         prometheus.io/scrape: "true"
       type: annotations
     - properties:
-        class: traefik
-        classInSpec: true
         domain: app-b.127.0.0.1.nip.io
         http:
           /: 8080
