@@ -37,7 +37,7 @@ spec:
           configMapKeyRef:
             key: SERVICE_B_URL
             name: app-a-k726ff7mhh
-      image: sselzer/app-a:8a47294
+      image: sselzer/app-a:98edb25
       port: 8080
     traits:
     - properties:
@@ -56,7 +56,7 @@ spec:
         min: 2
       type: cpuscaler
     - properties:
-        cpu: 0.5
-        memory: 128Mi
+        cpu: 1
+        memory: 256Mi
       type: resource
     type: webservice
