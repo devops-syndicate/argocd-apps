@@ -15,8 +15,6 @@ spec:
         min: 2
       type: cpuscaler
     - properties:
-        class: traefik
-        classInSpec: true
         domain: httpbin.127.0.0.1.nip.io
         http:
           /: 80
