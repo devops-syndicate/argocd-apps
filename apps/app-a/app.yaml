@@ -22,10 +22,10 @@ spec:
           configMapKeyRef:
             key: OTEL_SERVICE_NAME
             name: app-a-d5gb6tt7fk
-      - name: OTEL_EXPORTER_JAEGER_HTTP_ENDPOINT
+      - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
         valueFrom:
           configMapKeyRef:
-            key: OTEL_EXPORTER_JAEGER_HTTP_ENDPOINT
+            key: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
             name: app-a-d5gb6tt7fk
       - name: PYROSCOPE_URL
         valueFrom:
@@ -37,7 +37,7 @@ spec:
           configMapKeyRef:
             key: SERVICE_B_URL
             name: app-a-d5gb6tt7fk
-      image: sselzer/app-a:160f359
+      image: sselzer/app-a:d78ebf4
       port: 8080
     traits:
     - properties:
