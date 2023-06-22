@@ -1,11 +1,11 @@
 apiVersion: v1
 data:
-  OTEL_EXPORTER_JAEGER_HTTP_ENDPOINT: http://tempo.tempo:14268/api/traces
+  OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: http://tempo.tempo:4318/v1/traces
   OTEL_SERVICE_NAME: app-b
   PYROSCOPE_URL: http://pyroscope.pyroscope:4040
 kind: ConfigMap
 metadata:
-  name: app-b-kgfhfm7h56
+  name: app-b-hk6c9mfm9t
 ---
 apiVersion: core.oam.dev/v1beta1
 kind: Application
@@ -20,18 +20,18 @@ spec:
         valueFrom:
           configMapKeyRef:
             key: OTEL_SERVICE_NAME
-            name: app-b-kgfhfm7h56
-      - name: OTEL_EXPORTER_JAEGER_HTTP_ENDPOINT
+            name: app-b-hk6c9mfm9t
+      - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
         valueFrom:
           configMapKeyRef:
-            key: OTEL_EXPORTER_JAEGER_HTTP_ENDPOINT
-            name: app-b-kgfhfm7h56
+            key: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
+            name: app-b-hk6c9mfm9t
       - name: PYROSCOPE_URL
         valueFrom:
           configMapKeyRef:
             key: PYROSCOPE_URL
-            name: app-b-kgfhfm7h56
-      image: sselzer/app-b:8631981
+            name: app-b-hk6c9mfm9t
+      image: sselzer/app-b:3231865
       port: 8080
     traits:
     - properties:
