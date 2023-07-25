@@ -20,7 +20,12 @@ spec:
           configMapKeyRef:
             key: MANAGEMENT_OTLP_TRACING_ENDPOINT
             name: demo-app-674db5cch8
-      image: sselzer/demo-app:9b58903
+      - name: PYROSCOPE_URL
+        valueFrom:
+          configMapKeyRef:
+            key: PYROSCOPE_URL
+            name: demo-app-674db5cch8
+      image: sselzer/demo-app:2f6b5a7
       port: 8080
     traits:
     - properties:
