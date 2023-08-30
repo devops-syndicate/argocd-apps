@@ -37,7 +37,7 @@ spec:
           configMapKeyRef:
             key: SERVICE_B_URL
             name: app-a-d5gb6tt7fk
-      image: sselzer/app-a:3602fbe
+      image: sselzer/app-a:6c572da
       port: 8080
     traits:
     - properties:
@@ -52,7 +52,7 @@ spec:
       type: gateway
     - properties:
         cpuPercent: 80
-        max: 5
-        min: 2
+        max: 3
+        min: 1
       type: cpuscaler
     type: webservice
