@@ -31,7 +31,7 @@ spec:
           configMapKeyRef:
             key: PYROSCOPE_URL
             name: app-b-hk6c9mfm9t
-      image: sselzer/app-b:3231865
+      image: sselzer/app-b:f374e2f
       port: 8080
     traits:
     - properties:
@@ -46,7 +46,7 @@ spec:
       type: gateway
     - properties:
         cpuPercent: 80
-        max: 5
-        min: 2
+        max: 3
+        min: 1
       type: cpuscaler
     type: webservice
