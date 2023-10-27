@@ -25,7 +25,7 @@ spec:
           configMapKeyRef:
             key: PYROSCOPE_URL
             name: hello-app-674db5cch8
-      image: sselzer/hello-app:332b577
+      image: sselzer/hello-app:2e50957
       port: 8080
     traits:
     - properties:
