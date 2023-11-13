@@ -31,7 +31,7 @@ spec:
           configMapKeyRef:
             key: PYROSCOPE_URL
             name: technology-day-kmf69gc6hf
-      image: sselzer/technology-day:602ae65
+      image: sselzer/technology-day:fe8da80
       port: 8080
     traits:
     - properties:
