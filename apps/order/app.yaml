@@ -31,7 +31,7 @@ spec:
           configMapKeyRef:
             key: PYROSCOPE_URL
             name: order-k9bm99mh9f
-      image: sselzer/order:8164120
+      image: sselzer/order:5c78a97
       port: 8080
     traits:
     - properties:
