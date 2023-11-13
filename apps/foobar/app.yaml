@@ -31,7 +31,7 @@ spec:
           configMapKeyRef:
             key: PYROSCOPE_URL
             name: foobar-549ft82m9g
-      image: sselzer/foobar:b60e717
+      image: sselzer/foobar:ba5368f
       port: 8080
     traits:
     - properties:
