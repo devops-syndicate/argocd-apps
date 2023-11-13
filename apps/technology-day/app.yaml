@@ -1,0 +1,52 @@
+apiVersion: v1
+data:
+  OTEL_EXPORTER_JAEGER_HTTP_ENDPOINT: http://tempo.tempo:14268/api/traces
+  OTEL_SERVICE_NAME: technology-day
+  PYROSCOPE_URL: http://pyroscope.pyroscope:4040
+kind: ConfigMap
+metadata:
+  name: technology-day-kmf69gc6hf
+---
+apiVersion: core.oam.dev/v1beta1
+kind: Application
+metadata:
+  name: technology-day
+spec:
+  components:
+  - name: technology-day
+    properties:
+      env:
+      - name: OTEL_SERVICE_NAME
+        valueFrom:
+          configMapKeyRef:
+            key: OTEL_SERVICE_NAME
+            name: technology-day-kmf69gc6hf
+      - name: OTEL_EXPORTER_JAEGER_HTTP_ENDPOINT
+        valueFrom:
+          configMapKeyRef:
+            key: OTEL_EXPORTER_JAEGER_HTTP_ENDPOINT
+            name: technology-day-kmf69gc6hf
+      - name: PYROSCOPE_URL
+        valueFrom:
+          configMapKeyRef:
+            key: PYROSCOPE_URL
+            name: technology-day-kmf69gc6hf
+      image: sselzer/technology-day:602ae65
+      port: 8080
+    traits:
+    - properties:
+        prometheus.io/path: /metrics
+        prometheus.io/port: "8080"
+        prometheus.io/scrape: "true"
+      type: annotations
+    - properties:
+        cpuPercent: 80
+        max: 3
+        min: 1
+      type: cpuscaler
+    - properties:
+        domain: technology-day.127.0.0.1.nip.io
+        http:
+          /: 8080
+      type: gateway
+    type: webservice
