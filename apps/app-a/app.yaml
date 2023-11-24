@@ -37,7 +37,7 @@ spec:
           configMapKeyRef:
             key: SERVICE_B_URL
             name: app-a-d5gb6tt7fk
-      image: sselzer/app-a:5d26b39
+      image: sselzer/app-a:4c3c1ea
       port: 8080
     traits:
     - properties:
