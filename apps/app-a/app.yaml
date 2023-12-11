@@ -8,51 +8,85 @@ kind: ConfigMap
 metadata:
   name: app-a-d5gb6tt7fk
 ---
-apiVersion: core.oam.dev/v1beta1
-kind: Application
+apiVersion: v1
+kind: Service
 metadata:
   name: app-a
 spec:
-  components:
-  - name: app-a
-    properties:
-      env:
-      - name: OTEL_SERVICE_NAME
-        valueFrom:
-          configMapKeyRef:
-            key: OTEL_SERVICE_NAME
-            name: app-a-d5gb6tt7fk
-      - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
-        valueFrom:
-          configMapKeyRef:
-            key: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
-            name: app-a-d5gb6tt7fk
-      - name: PYROSCOPE_URL
-        valueFrom:
-          configMapKeyRef:
-            key: PYROSCOPE_URL
-            name: app-a-d5gb6tt7fk
-      - name: SERVICE_B_URL
-        valueFrom:
-          configMapKeyRef:
-            key: SERVICE_B_URL
-            name: app-a-d5gb6tt7fk
-      image: sselzer/app-a:4c3c1ea
-      port: 8080
-    traits:
-    - properties:
+  ports:
+  - name: port-8080
+    port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: app-a
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-a
+spec:
+  revisionHistoryLimit: 1
+  selector:
+    matchLabels:
+      app: app-a
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      annotations:
         prometheus.io/path: /metrics
         prometheus.io/port: "8080"
         prometheus.io/scrape: "true"
-      type: annotations
-    - properties:
-        domain: app-a.127.0.0.1.nip.io
-        http:
-          /: 8080
-      type: gateway
-    - properties:
-        cpuPercent: 80
-        max: 3
-        min: 1
-      type: cpuscaler
-    type: webservice
+      labels:
+        app: app-a
+    spec:
+      containers:
+      - envFrom:
+        - configMapRef:
+            name: app-a-d5gb6tt7fk
+        image: sselzer/app-a:b48a5c9
+        name: app-a
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: app-a
+spec:
+  maxReplicas: 3
+  metrics:
+  - resource:
+      name: cpu
+      target:
+        averageUtilization: 50
+        type: Utilization
+    type: Resource
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: app-a
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: app-a
+spec:
+  rules:
+  - host: app-a.127.0.0.1.nip.io
+    http:
+      paths:
+      - backend:
+          service:
+            name: app-a
+            port:
+              number: 8080
+        path: /
+        pathType: ImplementationSpecific
