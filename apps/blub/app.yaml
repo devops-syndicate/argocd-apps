@@ -31,7 +31,7 @@ spec:
           configMapKeyRef:
             key: PYROSCOPE_URL
             name: blub-t49f25dbf4
-      image: sselzer/blub:8faa859
+      image: sselzer/blub:ea6e8c9
       port: 8080
     traits:
     - properties:
