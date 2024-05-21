@@ -5,7 +5,7 @@ data:
   PYROSCOPE_URL: http://pyroscope.observability:4040
 kind: ConfigMap
 metadata:
-  name: app-b-hk6c9mfm9t
+  name: app-b-g4mgmc5dct
 ---
 apiVersion: core.oam.dev/v1beta1
 kind: Application
@@ -20,18 +20,18 @@ spec:
         valueFrom:
           configMapKeyRef:
             key: OTEL_SERVICE_NAME
-            name: app-b-hk6c9mfm9t
+            name: app-b-g4mgmc5dct
       - name: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
         valueFrom:
           configMapKeyRef:
             key: OTEL_EXPORTER_OTLP_TRACES_ENDPOINT
-            name: app-b-hk6c9mfm9t
+            name: app-b-g4mgmc5dct
       - name: PYROSCOPE_URL
         valueFrom:
           configMapKeyRef:
             key: PYROSCOPE_URL
-            name: app-b-hk6c9mfm9t
-      image: sselzer/app-b:0fabc76
+            name: app-b-g4mgmc5dct
+      image: sselzer/app-b:7fed9bf
       port: 8080
     traits:
     - properties:
