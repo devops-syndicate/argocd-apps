@@ -48,7 +48,7 @@ spec:
       - envFrom:
         - configMapRef:
             name: app-a-ct594t42md
-        image: sselzer/app-a:a774bfa
+        image: sselzer/app-a:3535dcb
         name: app-a
         ports:
         - containerPort: 8080
