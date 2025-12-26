@@ -4,7 +4,7 @@ data:
   PYROSCOPE_URL: http://pyroscope.observability:4040
 kind: ConfigMap
 metadata:
-  name: hello-app-674db5cch8
+  name: hello-app-t6d4fb8g7b
 ---
 apiVersion: core.oam.dev/v1beta1
 kind: Application
@@ -19,15 +19,18 @@ spec:
         valueFrom:
           configMapKeyRef:
             key: MANAGEMENT_OTLP_TRACING_ENDPOINT
-            name: hello-app-674db5cch8
+            name: hello-app-t6d4fb8g7b
       - name: PYROSCOPE_URL
         valueFrom:
           configMapKeyRef:
             key: PYROSCOPE_URL
-            name: hello-app-674db5cch8
-      image: sselzer/hello-app:5807b64
+            name: hello-app-t6d4fb8g7b
+      image: sselzer/hello-app:6c48f4e
       port: 8080
     traits:
+    - properties:
+        app.kubernetes.io/name: hello-app
+      type: labels
     - properties:
         prometheus.io/path: /actuator/prometheus
         prometheus.io/port: "8080"
