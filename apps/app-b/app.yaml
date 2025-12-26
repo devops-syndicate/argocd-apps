@@ -31,9 +31,12 @@ spec:
           configMapKeyRef:
             key: PYROSCOPE_URL
             name: app-b-g4mgmc5dct
-      image: sselzer/app-b:7fed9bf
+      image: sselzer/app-b:73e3d0a
       port: 8080
     traits:
+    - properties:
+        app.kubernetes.io/name: app-b
+      type: labels
     - properties:
         prometheus.io/path: /metrics
         prometheus.io/port: "8080"
