@@ -31,9 +31,12 @@ spec:
           configMapKeyRef:
             key: PYROSCOPE_URL
             name: order-88gchb46m4
-      image: sselzer/order:7b0f457
+      image: sselzer/order:5b6a0f1
       port: 8080
     traits:
+    - properties:
+        app.kubernetes.io/name: order
+      type: labels
     - properties:
         prometheus.io/path: /metrics
         prometheus.io/port: "8080"
