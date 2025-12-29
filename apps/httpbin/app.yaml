@@ -10,6 +10,9 @@ spec:
       port: 80
     traits:
     - properties:
+        app.kubernetes.io/name: httpbin
+      type: labels
+    - properties:
         cpuPercent: 80
         max: 5
         min: 2
