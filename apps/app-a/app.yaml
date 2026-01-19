@@ -1,93 +1,14 @@
-apiVersion: v1
-data:
-  OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: http://tempo.observability:4318/v1/traces
-  OTEL_SERVICE_NAME: app-a
-  PYROSCOPE_URL: http://pyroscope.observability:4040
-  SERVICE_B_URL: http://app-b.app-b:8080
-kind: ConfigMap
-metadata:
-  name: app-a-ct594t42md
----
-apiVersion: v1
-kind: Service
+apiVersion: kro.run/v1alpha1
+kind: Application
 metadata:
   name: app-a
 spec:
-  ports:
-  - name: port-8080
-    port: 8080
-    protocol: TCP
-    targetPort: 8080
-  selector:
-    app: app-a
----
-apiVersion: apps/v1
-kind: Deployment
-metadata:
   name: app-a
-spec:
-  revisionHistoryLimit: 1
-  selector:
-    matchLabels:
-      app: app-a
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
-  template:
-    metadata:
-      annotations:
-        prometheus.io/path: /metrics
-        prometheus.io/port: "8080"
-        prometheus.io/scrape: "true"
-      labels:
-        app: app-a
-        app.kubernetes.io/name: app-a
-    spec:
-      containers:
-      - envFrom:
-        - configMapRef:
-            name: app-a-ct594t42md
-        image: sselzer/app-a:ce92e6f
-        name: app-a
-        ports:
-        - containerPort: 8080
-          protocol: TCP
-        resources: {}
----
-apiVersion: autoscaling/v2
-kind: HorizontalPodAutoscaler
-metadata:
-  name: app-a
-spec:
-  maxReplicas: 3
-  metrics:
-  - resource:
-      name: cpu
-      target:
-        averageUtilization: 50
-        type: Utilization
-    type: Resource
-  minReplicas: 1
-  scaleTargetRef:
-    apiVersion: apps/v1
-    kind: Deployment
-    name: app-a
----
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: app-a
-spec:
-  rules:
-  - host: app-a.127.0.0.1.nip.io
-    http:
-      paths:
-      - backend:
-          service:
-            name: app-a
-            port:
-              number: 8080
-        path: /
-        pathType: ImplementationSpecific
+  replicas: 1
+  ingress:
+    enabled: true
+  env:
+    OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: http://tempo.observability:4318/v1/traces
+    OTEL_SERVICE_NAME: app-a
+    PYROSCOPE_URL: http://pyroscope.observability:4040
+    SERVICE_B_URL: http://app-b.app-b:8080
