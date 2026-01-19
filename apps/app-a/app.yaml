@@ -4,6 +4,7 @@ metadata:
   name: app-a
 spec:
   name: app-a
+  image: sselzer/app-a:ce92e6f
   replicas: 1
   ingress:
     enabled: true
